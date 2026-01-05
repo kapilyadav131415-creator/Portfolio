@@ -42,7 +42,7 @@ export type ValidSkills =
 
 export type ValidCategory =
   | "Full Stack"
-  | "Bacnd"
+  | "Backend"
   | "Frontend"
   | "Mobile App"
   | "Database"
