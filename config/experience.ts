@@ -24,7 +24,7 @@ export const experiences: ExperienceInterface[] = [
     endDate: "Present",
     description: [
       "Developed and maintained ASP.NET WebForms applications for business automation and enterprise workflows.",
-      "Built RESTful APIs  Node.js and Express.js for scalable client-server communication.",
+      "Built RESTful APIs using Node.js and Express.js for scalable client-server communication.",
       "Optimized SQL Server queries and stored procedures to improve application performance.",
       "Integrated industrial PLC devices using Modbus TCP for real-time data monitoring and processing.",
     ],

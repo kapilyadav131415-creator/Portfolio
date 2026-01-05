@@ -14,11 +14,11 @@ type PagesConfig = {
 export const pagesConfig: PagesConfig = {
   home: {
     title: "Home",
-    description: "Welcome to Kapil Yadav's portfolio website.",
+    description: "Welcome to Kapil  's portfolio website.",
     metadata: {
-      title: "Kapil Yadav | Full Stack Developer",
+      title: "Kapil   | Full Stack Developer",
       description:
-        "Portfolio of Kapil Yadav, Full Stack Developer specializing in ASP.NET, C#, Node.js, SQL Server, React.js, Flutter, and Enterprise Software Development.",
+        "Portfolio of Kapil  , Full Stack Developer specializing in ASP.NET, C#, Node.js, SQL Server, React.js, Flutter, and Enterprise Software Development.",
     },
   },
 
@@ -26,7 +26,7 @@ export const pagesConfig: PagesConfig = {
     title: "Skills",
     description: "Technologies, tools, and frameworks I work with.",
     metadata: {
-      title: "Skills | Kapil Yadav",
+      title: "Skills | Kapil  ",
       description:
         "Technical skills including ASP.NET, C#, SQL Server, Node.js, React.js, Flutter, Kotlin, REST APIs, and Database Development.",
     },
@@ -36,7 +36,7 @@ export const pagesConfig: PagesConfig = {
     title: "Projects",
     description: "Showcasing real-world software projects and solutions.",
     metadata: {
-      title: "Projects | Kapil Yadav",
+      title: "Projects | Kapil  ",
       description:
         "Explore projects including QR Restaurant SaaS, Multi-Vendor eCommerce Platform, Remote Phone Lock System, PLC Monitoring Solutions, and News Portal CMS.",
     },
@@ -46,7 +46,7 @@ export const pagesConfig: PagesConfig = {
     title: "Experience",
     description: "Professional journey and software development experience.",
     metadata: {
-      title: "Experience | Kapil Yadav",
+      title: "Experience | Kapil  ",
       description:
         "Professional experience in ASP.NET Development, Backend Engineering, REST API Development, SQL Server, PLC Integration, and Enterprise Applications.",
     },
@@ -56,9 +56,9 @@ export const pagesConfig: PagesConfig = {
     title: "Contact",
     description: "Let's connect and discuss opportunities.",
     metadata: {
-      title: "Contact | Kapil Yadav",
+      title: "Contact | Kapil  ",
       description:
-        "Get in touch with Kapil Yadav for internships, software development projects, collaborations, and career opportunities.",
+        "Get in touch with Kapil   for internships, software development projects, collaborations, and career opportunities.",
     },
   },
 
@@ -66,7 +66,7 @@ export const pagesConfig: PagesConfig = {
     title: "Featured Work",
     description: "Highlighted software projects and technical achievements.",
     metadata: {
-      title: "Featured Work | Kapil Yadav",
+      title: "Featured Work | Kapil  ",
       description:
         "A collection of software projects, enterprise solutions, mobile applications, and backend systems developed by Kapil Yadav.",
     },
@@ -76,9 +76,9 @@ export const pagesConfig: PagesConfig = {
     title: "Resume",
     description: "View and download my professional resume.",
     metadata: {
-      title: "Resume | Kapil Yadav",
+      title: "Resume | Kapil  ",
       description:
-        "Professional resume of Kapil Yadav, Full Stack Developer and Software Engineer.",
+        "Professional resume of Kapil Ya dav, Full Stack Developer and Software Engineer.",
     },
   },
 
@@ -87,7 +87,7 @@ export const pagesConfig: PagesConfig = {
     description:
       "Articles, tutorials, and insights on software development and technology.",
     metadata: {
-      title: "Blogs | Kapil Yadav",
+      title: "Blogs | Kapil  ",
       description:
         "Read articles about ASP.NET, Node.js, SQL Server, Flutter, REST APIs, Software Development, and Enterprise Applications.",
     },
