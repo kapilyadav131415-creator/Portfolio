@@ -35,7 +35,7 @@ export const Projects: ProjectInterface[] = [
   category: ["Full Stack", "Backend", "Frontend"],
 
   shortDescription:
-    "Multi-vendor eCommerce platform with vendor onboarding, inventory management, shopping cart and checkout system.",
+    "Multi-vendor eCommerce   with vendor onboarding, inventory management,     and checkout system.",
 
   techStack: [
     "ASP.NET WebForms",
