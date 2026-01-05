@@ -97,7 +97,7 @@ export const skillsUnsorted: skillsInterface[] = [
     icon: SiFirebase,
   },
   {
-    name: "Git & GitHub",
+    name: "Git &  ",
     description: "Version control and collaborative software development.",
     rating: 5,
     icon: SiGithub,
