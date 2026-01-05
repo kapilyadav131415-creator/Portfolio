@@ -17,14 +17,14 @@ export interface ExperienceInterface {
 export const experiences: ExperienceInterface[] = [
   {
     id: "symbolic",
-    position: "Software Developer",
+    position: "Software ",
     company: "Symbolic India Software Solutions",
     location: "Ghaziabad, India",
     startDate: new Date("2023-01-01"),
     endDate: "Present",
     description: [
       "Developed and maintained ASP.NET WebForms applications for business automation and enterprise workflows.",
-      "Built RESTful APIs using Node.js and Express.js for scalable client-server communication.",
+      "Built RESTful APIs  Node.js and Express.js for scalable client-server communication.",
       "Optimized SQL Server queries and stored procedures to improve application performance.",
       "Integrated industrial PLC devices using Modbus TCP for real-time data monitoring and processing.",
     ],

@@ -16,7 +16,7 @@ export const contributionsUnsorted: contributionsInterface[] = [
   {
     repo: "Multi Vendor eCommerce Platform",
     contibutionDescription:
-      "Developed a  eCommerce platform with vendor onboarding, product management, shopping cart, checkout system, and role-based authentication.",
+      "Developed a scalable eCommerce platform with vendor onboarding, product management, shopping cart, checkout system, and role-based authentication.",
     repoOwner: "Kapil Yadav",
     link: "https://github.com/kapilyadav131415-creator",
   },
