@@ -104,7 +104,7 @@ export const skillsUnsorted: skillsInterface[] = [
   },
   {
     name: "Postman",
-    description: "API development, testing, and documentation.",
+    description: "API , testing, and documentation.",
     rating: 5,
     icon: SiPostman,
   },
