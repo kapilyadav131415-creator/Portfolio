@@ -33,7 +33,7 @@ export type ValidSkills =
   | "Modbus TCP"
   | "PLC Integration"
   | "JWT Authentication"
-  | "Role Based Access"
+  | "Role  Access"
   | "Database Design"
   | "OOP"
   | "DBMS"
