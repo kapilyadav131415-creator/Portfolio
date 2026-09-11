@@ -6,11 +6,13 @@ import localFont from "next/font/local";
 import Script from "next/script";
 
 import { Analytics } from "@/components/common/analytics";
+import { PageLoader } from "@/components/common/page-loader";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/providers/modal-provider";
+
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -126,6 +128,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             "synthwave",
           ]}
         >
+          <PageLoader />
           {children}
           <Analytics />
           <Toaster />

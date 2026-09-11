@@ -1,80 +1,143 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import Rating from "@/components/skills/rating";
-import { skills, featuredSkills } from "@/config/skills";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useRef } from "react";
+
+import { featuredSkills, skills, skillsInterface } from "@/config/skills";
 
 interface SkillsCardProps {
   type?: "all" | "featured";
 }
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+/* ── 3D Tilt Card ─────────────────────────────────────────────────────────── */
+function SkillTile({ skill, index }: { skill: skillsInterface; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
 
-const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-    },
-  },
-};
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
+  const mouseXSpring = useSpring(x, { stiffness: 250, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 250, damping: 20 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["12deg", "-12deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-12deg", "12deg"]);
+
+  const glowX = useTransform(mouseXSpring, [-0.5, 0.5], ["0%", "100%"]);
+  const glowY = useTransform(mouseYSpring, [-0.5, 0.5], ["0%", "100%"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(px);
+    y.set(py);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const proficiencyLabel = ["", "Beginner", "Basic", "Intermediate", "Advanced", "Expert"][skill.rating] ?? "Expert";
+  const proficiencyColor = [
+    "",
+    "text-slate-400",
+    "text-blue-400",
+    "text-violet-400",
+    "text-amber-400",
+    "text-emerald-400",
+  ][skill.rating] ?? "text-emerald-400";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        delay: index * 0.05,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      }}
+      style={{ perspective: "800px" }}
+    >
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        whileHover={{ z: 30 }}
+        className="group relative cursor-pointer"
+      >
+        {/* Card */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-background via-background to-muted/30 p-5 h-full transition-all duration-300 group-hover:border-white/20 group-hover:shadow-2xl">
+          {/* Moving gradient highlight */}
+          <motion.div
+            className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{
+              background: `radial-gradient(200px circle at ${glowX}% ${glowY}%, hsl(var(--primary)/0.15), transparent 70%)`,
+            }}
+          />
+
+          {/* Shimmer line */}
+          <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          {/* Content */}
+          <div style={{ transform: "translateZ(20px)" }} className="relative flex flex-col items-center gap-4 text-center">
+            {/* 3D Icon container */}
+            <motion.div
+              whileHover={{ scale: 1.15, rotateY: 15 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              style={{ transformStyle: "preserve-3d" }}
+              className="relative"
+            >
+              {/* Glow blob behind icon */}
+              <div className="absolute inset-0 rounded-xl bg-primary/20 blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 shadow-lg group-hover:shadow-primary/25 group-hover:shadow-xl transition-all duration-300">
+                <skill.icon
+                  size={28}
+                  className="text-primary drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(var(--primary),0.6)] transition-all duration-300"
+                />
+              </div>
+            </motion.div>
+
+            {/* Name */}
+            <div className="space-y-1.5">
+              <p className="text-sm font-bold text-foreground leading-tight">
+                {skill.name}
+              </p>
+              {/* Proficiency bar */}
+              <div className="w-full h-1 rounded-full bg-muted overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${(skill.rating / 5) * 100}%` }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 + 0.3, duration: 0.8, ease: "easeOut" as const }}
+                  className="h-full rounded-full bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-500"
+                />
+              </div>
+              <p className={`text-xs font-semibold ${proficiencyColor}`}>
+                {proficiencyLabel}
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ── Main Component ───────────────────────────────────────────────────────── */
 export default function SkillsCard({ type = "all" }: SkillsCardProps) {
   const displaySkills = type === "featured" ? featuredSkills : skills;
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      className="mx-auto grid justify-center gap-6 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
       {displaySkills.map((skill, id) => (
-        <motion.div
-          key={id}
-          variants={itemVariants}
-          whileHover={{ y: -5, scale: 1.02 }}
-          className="group relative overflow-hidden rounded-xl border border-white/10 bg-background/50 backdrop-blur-md p-0.5 shadow-lg transition-all hover:shadow-primary/25"
-        >
-          {/* Animated gradient border on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          
-          <div className="relative flex h-[240px] flex-col justify-between rounded-lg bg-background p-6">
-            <motion.div
-              whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-              transition={{ duration: 0.5 }}
-              className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 shadow-[0_0_20px_rgba(var(--primary),0.2)] backdrop-blur-xl"
-            >
-              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full -z-10" />
-              <div className="text-primary drop-shadow-[0_0_8px_rgba(var(--primary),0.8)]">
-                <skill.icon size={40} />
-              </div>
-            </motion.div>
-            
-            <div className="space-y-2 mt-4">
-              <h3 className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">{skill.name}</h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {skill.description}
-              </p>
-              <div className="pt-2">
-                <Rating stars={skill.rating} />
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <SkillTile key={id} skill={skill} index={id} />
       ))}
-    </motion.div>
+    </div>
   );
 }
