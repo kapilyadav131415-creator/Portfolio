@@ -92,111 +92,98 @@ export function HomePageClient({ featuredBlogs }: HomePageClientProps) {
           }}
         />
 
-        <div className="container py-14 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
-            {/* Left — Text */}
-            <div className="space-y-7">
-              <AnimatedText type="fade" delay={0.05}>
-                <div className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground">
-                  <span className="status-dot" />
-                  Open for freelance projects
-                </div>
-              </AnimatedText>
+        <div className="container py-16 md:py-24">
+          <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+            {/* Circular photo */}
+            <AnimatedText type="scale" delay={0.05}>
+              <div className="relative h-32 w-32 sm:h-40 sm:w-40 overflow-hidden rounded-full border-2 border-border">
+                <Image
+                  src={profileImg}
+                  alt={`${siteConfig.authorName} — Full Stack Developer`}
+                  fill
+                  sizes="160px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </AnimatedText>
 
-              <AnimatedText as="h1" delay={0.1}>
-                <span className="font-heading text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground block leading-[1.05]">
-                  {siteConfig.authorName}
-                </span>
-              </AnimatedText>
+            <AnimatedText type="fade" delay={0.12} className="mt-5">
+              <div className="inline-flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                <span className="status-dot" />
+                Open for freelance projects
+              </div>
+            </AnimatedText>
 
-              <AnimatedText delay={0.18} className="block">
-                <p className="font-heading text-xl sm:text-2xl font-medium text-muted-foreground">
-                  <Typewriter
-                    words={ROLES}
-                    className="text-foreground"
-                    typingSpeed={70}
-                    deletingSpeed={45}
-                  />
-                </p>
-              </AnimatedText>
+            <AnimatedText as="h1" delay={0.18} className="mt-4">
+              <span className="font-heading text-5xl sm:text-6xl font-semibold tracking-tight text-foreground block leading-[1.05]">
+                {siteConfig.authorName}
+              </span>
+            </AnimatedText>
 
-              <AnimatedText
-                as="p"
-                delay={0.26}
-                className="leading-relaxed text-muted-foreground text-base sm:text-lg max-w-lg"
-              >
-                Full-stack developer building scalable, production-grade web
-                applications across .NET and Node.js — specializing in REST
-                API architecture, SQL performance tuning, and real-time
-                industrial system integration.
-              </AnimatedText>
+            <AnimatedText delay={0.24} className="block mt-3">
+              <p className="font-heading text-xl sm:text-2xl font-medium text-muted-foreground">
+                <Typewriter
+                  words={ROLES}
+                  className="text-foreground"
+                  typingSpeed={70}
+                  deletingSpeed={45}
+                />
+              </p>
+            </AnimatedText>
 
-              <AnimatedText delay={0.34}>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "rounded-sm px-7")}>
-                    Start a project
-                  </Link>
-                  <Link
-                    href="/resume"
-                    target="_blank"
-                    className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-sm px-7")}
-                  >
-                    View resume
-                  </Link>
-                </div>
-              </AnimatedText>
+            <AnimatedText
+              as="p"
+              delay={0.3}
+              className="mt-4 leading-relaxed text-muted-foreground text-base sm:text-lg max-w-xl"
+            >
+              Full-stack developer building scalable, production-grade web
+              applications across .NET and Node.js — specializing in REST
+              API architecture, SQL performance tuning, and real-time
+              industrial system integration.
+            </AnimatedText>
 
-              <AnimatedText delay={0.42}>
-                <div className="flex border border-border max-w-lg">
-                  {STATS.map((stat, i) => (
-                    <div
-                      key={i}
-                      className={cn(
-                        "flex-1 px-4 py-3",
-                        i !== 0 && "border-l border-border"
-                      )}
-                    >
-                      <div className="font-heading text-xl font-semibold text-foreground">
-                        {stat.value}
-                      </div>
-                      <div className="font-mono text-[11px] text-muted-foreground mt-0.5">
-                        {stat.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </AnimatedText>
-            </div>
+            <AnimatedText delay={0.36} className="mt-7">
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "rounded-sm px-7")}>
+                  Start a project
+                </Link>
+                <Link
+                  href="/resume"
+                  target="_blank"
+                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "rounded-sm px-7")}
+                >
+                  View resume
+                </Link>
+              </div>
+            </AnimatedText>
 
-            {/* Right — Photo panel */}
-            <AnimatedText type="scale" delay={0.2}>
-              <div className="relative mx-auto w-full max-w-[280px] lg:max-w-[320px]">
-                <span className="mono-tag absolute -top-3 left-4 z-10 bg-background">
-                  profile.jpg
-                </span>
-                <div className="panel overflow-hidden">
+            <AnimatedText delay={0.44} className="mt-8 w-full">
+              <div className="flex border border-border">
+                {STATS.map((stat, i) => (
                   <div
-                    className="relative w-full overflow-hidden"
-                    style={{ aspectRatio: "4 / 5", maxHeight: 400 }}
+                    key={i}
+                    className={cn(
+                      "flex-1 px-4 py-3",
+                      i !== 0 && "border-l border-border"
+                    )}
                   >
-                    <Image
-                      src={profileImg}
-                      alt={`${siteConfig.authorName} — Full Stack Developer`}
-                      fill
-                      sizes="(max-width: 1024px) 280px, 320px"
-                      className="object-cover object-top"
-                      priority
-                    />
-                  </div>
-                  <div className="border-t border-border bg-card px-4 py-3">
-                    <p className="font-mono text-[11px] text-muted-foreground mb-2">stack</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {STACK_LINE.map((tech) => (
-                        <span key={tech} className="mono-tag">{tech}</span>
-                      ))}
+                    <div className="font-heading text-xl font-semibold text-foreground">
+                      {stat.value}
+                    </div>
+                    <div className="font-mono text-[11px] text-muted-foreground mt-0.5">
+                      {stat.label}
                     </div>
                   </div>
-                </div>
+                ))}
+              </div>
+            </AnimatedText>
+
+            <AnimatedText delay={0.5} className="mt-5">
+              <div className="flex flex-wrap items-center justify-center gap-1.5">
+                {STACK_LINE.map((tech) => (
+                  <span key={tech} className="mono-tag">{tech}</span>
+                ))}
               </div>
             </AnimatedText>
           </div>
