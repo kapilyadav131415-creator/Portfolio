@@ -1,7 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
 
-import { Icons } from "@/components/common/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { SocialLinks } from "@/config/socials";
@@ -11,51 +10,38 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      className={cn(
-        "border-t border-border/50 bg-background/50 backdrop-blur-sm",
-        className
-      )}
-    >
+    <footer className={cn("border-t border-border bg-background", className)}>
       {/* CTA Band */}
-      <div className="border-b border-border/40 bg-gradient-to-r from-blue-500/5 via-violet-500/5 to-emerald-500/5">
-        <div className="container py-10 md:py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div className="border-b border-border">
+        <div className="container py-10 md:py-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
-              Let&apos;s Work Together
+            <h3 className="font-heading text-2xl md:text-3xl font-semibold text-foreground">
+              Let&apos;s work together
             </h3>
             <p className="text-muted-foreground text-sm md:text-base max-w-md">
-              Have a project in mind? I&apos;m currently available for freelance
-              projects and full-time roles.
+              Open for freelance projects and full-time roles — reach out with
+              what you&apos;re building.
             </p>
           </div>
           <Link
             href="/contact"
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "rounded-full px-8 bg-gradient-to-r from-blue-600 to-violet-600 border-0 hover:from-blue-500 hover:to-violet-500 text-white shadow-lg shadow-blue-500/20 flex-shrink-0"
-            )}
+            className={cn(buttonVariants({ size: "lg" }), "rounded-sm px-8 flex-shrink-0")}
           >
-            <Icons.contact className="w-4 h-4 mr-2" />
-            Start a Project
+            Start a project
           </Link>
         </div>
       </div>
 
       {/* Footer Bottom */}
       <div className="container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Brand */}
-        <div className="flex items-center gap-2">
-          <span className="font-heading text-lg font-bold text-foreground">
+        <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+          <span className="text-foreground font-heading text-base font-semibold not-italic">
             {siteConfig.authorName}
           </span>
-          <span className="text-muted-foreground text-sm hidden sm:inline">
-            — Full Stack Developer
-          </span>
+          <span className="hidden sm:inline">Full-stack developer</span>
         </div>
 
-        {/* Social Links */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {SocialLinks.map((item, ind) => (
             <Link
               key={ind}
@@ -63,19 +49,15 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               target="_blank"
               rel="noreferrer"
               aria-label={item.username}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "sm" }),
-                "h-9 w-9 p-0 rounded-lg hover:bg-accent hover:text-accent-foreground transition-all hover:scale-110"
-              )}
+              className="flex h-9 w-9 items-center justify-center border border-transparent text-muted-foreground hover:border-border hover:text-foreground transition-colors"
             >
               <item.icon className="h-4 w-4" />
             </Link>
           ))}
         </div>
 
-        {/* Copyright */}
-        <p className="text-xs text-muted-foreground text-center sm:text-right">
-          © {currentYear} {siteConfig.authorName}. All rights reserved.
+        <p className="font-mono text-[11px] text-muted-foreground text-center sm:text-right">
+          © {currentYear} {siteConfig.authorName}
         </p>
       </div>
     </footer>

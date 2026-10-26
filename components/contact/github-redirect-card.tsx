@@ -12,7 +12,7 @@ export default function GithubRedirectCard() {
 
   return (
     <Card
-      className="w-full h-fit max-w-sm overflow-hidden shadow-lg transition-all duration-300 ease-in-out transform hover:scale-102 mt-5"
+      className="w-full h-fit max-w-sm overflow-hidden rounded-sm transition-all duration-300 ease-in-out mt-5"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -38,7 +38,7 @@ export default function GithubRedirectCard() {
           target="_blank"
           className={cn(
             buttonVariants({ variant: "outline" }),
-            "w-full bg-transparent border-2 transition-all duration-300 py-6"
+            "w-full bg-transparent border transition-all duration-300 py-6 rounded-sm"
           )}
         >
           <span className="mr-2">Source Code</span>
@@ -46,7 +46,7 @@ export default function GithubRedirectCard() {
         </Link>
       </CardFooter>
       <div
-        className={`h-1 bg-gradient-to-r from-red-500 to-red-500 transition-all duration-300 ease-out ${
+        className={`h-[2px] bg-primary transition-all duration-300 ease-out ${
           isHovered ? "opacity-100" : "opacity-0"
         }`}
       ></div>

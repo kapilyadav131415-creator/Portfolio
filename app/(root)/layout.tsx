@@ -14,7 +14,7 @@ function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-500 z-[100] origin-left"
+      className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-[100] origin-left"
       style={{ scaleX: scrollYProgress }}
     />
   );
@@ -24,7 +24,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <ScrollProgressBar />
-      <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="container flex h-16 items-center">
           <MainNav items={routesConfig.mainNav} />
         </div>

@@ -45,11 +45,11 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
           delay={0.1 * (index + 1)}
           direction="up"
         >
-          <div className="w-full p-4 sm:p-6 bg-background border border-border rounded-lg transition-all duration-300">
+          <div className="panel w-full p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
               <div className="flex items-start gap-4 flex-1 min-w-0">
                 {experience.logo && (
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 border border-border overflow-hidden bg-white flex-shrink-0">
                     <Image
                       src={experience.logo}
                       alt={experience.company}
@@ -64,7 +64,7 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
                     <h3 className="text-lg sm:text-xl font-bold text-foreground">
                       {experience.position}
                     </h3>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-primary/10 text-primary border border-primary/20 w-fit">
+                    <span className="mono-tag w-fit">
                       {getDurationText(
                         experience.startDate,
                         experience.endDate
@@ -97,7 +97,7 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
               <Button
                 variant="outline"
                 size="sm"
-                className="rounded-lg w-full sm:w-auto"
+                className="rounded-sm w-full sm:w-auto"
                 asChild
               >
                 <Link href={`/experience/${experience.id}`}>

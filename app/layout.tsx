@@ -1,8 +1,7 @@
 import "./globals.css";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter as FontSans, Space_Grotesk as FontHeading, IBM_Plex_Mono as FontMono } from "next/font/google";
 import Script from "next/script";
 
 import { Analytics } from "@/components/common/analytics";
@@ -19,10 +18,16 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-// Font files can be colocated inside of `pages`
-const fontHeading = localFont({
-  src: "../assets/fonts/CalSans-SemiBold.woff2",
+const fontHeading = FontHeading({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
   variable: "--font-heading",
+});
+
+const fontMono = FontMono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
 });
 
 interface RootLayoutProps {
@@ -111,22 +116,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
-          fontHeading.variable
+          fontHeading.variable,
+          fontMono.variable
         )}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          themes={[
-            "light",
-            "dark",
-            "retro",
-            "cyberpunk",
-            "paper",
-            "aurora",
-            "synthwave",
-          ]}
+          themes={["light", "dark"]}
         >
           <PageLoader />
           {children}
